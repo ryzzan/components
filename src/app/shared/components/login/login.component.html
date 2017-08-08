@@ -1,0 +1,15 @@
+<md-card>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <md-input-container>
+        <input mdInput formControlName="email" type="text"
+        placeholder="E-mail">
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput formControlName="password" type="password"
+      placeholder="Password">
+    </md-input-container>
+
+    <button md-raised-button type="submit">Login</button>
+  </form>
+</md-card>
