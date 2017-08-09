@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 
 /**Services */
-import { AuthenticationService } from './../../services/authentication.service';
+import { AuthenticationService } from './../../services/firebase/authentication.service';
 
 @Component({
   selector: 'bonamondo-login',
