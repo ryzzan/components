@@ -8,7 +8,6 @@ export class AuthenticationService {
   constructor() { }
 
   login = (params) => new Promise((resolve, reject) => {
-
     fbAuth.signInWithEmailAndPassword(params.email, params.password)
     .catch((error) => {
       // Handle Errors here.
@@ -22,7 +21,34 @@ export class AuthenticationService {
       resolve(error);
     })
     .then(res => {
-      console.log(res.refreshToken);
+      if(res.refreshToken) {
+        resolve({
+          cod: "l-01",
+          message: "Login feito com sucesso."
+        })
+      }
+    })
+    .catch(rej => {
+      reject({
+        cod: "l-02",
+        message: rej
+      })
     });
+  })
+
+  logout = () => new Promise((resolve, reject) => {
+    fbAuth.signOut()
+    .then(res => {
+      resolve({
+        cod: "lo-01",
+        message: res
+      })
+    })
+    .catch(rej => {
+      reject({
+        cod: "lo-02",
+        message: rej
+      })
+    })
   })
 }

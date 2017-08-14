@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 /**Services */
 import { AuthenticationService } from './../../services/firebase/authentication.service';
@@ -12,11 +13,14 @@ import { AuthenticationService } from './../../services/firebase/authentication.
 })
 
 export class LoginComponent implements OnInit {
+  @Input() params;
+
   loginForm: FormGroup;
 
   constructor(
     private authentication: AuthenticationService,
-    private mdsnackbar: MdSnackBar
+    private mdsnackbar: MdSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,10 +33,13 @@ export class LoginComponent implements OnInit {
   onSubmit = () => {
     this.authentication.login(this.loginForm.value)
     .then(res => {
-      let message = JSON.stringify(res);
-      this.mdsnackbar.open(message, '', {
+      let string = JSON.stringify(res);
+      let json = JSON.parse(string);
+      this.mdsnackbar.open(json.message, '', {
         duration: 2000
       })
+
+      this.router.navigate(this.params.route);
     });
   }
 }
