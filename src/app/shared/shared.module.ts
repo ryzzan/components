@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 /**Components */
+import { FormAutocompleteMultipleComponent } from './components/form-autocomplete-multiple/form-autocomplete-multiple.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
@@ -18,15 +19,16 @@ import { CrudService } from './services/firebase/crud.service';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule
-  ],
-  exports: [
+  ],  
+  declarations: [
+    FormAutocompleteMultipleComponent,
+    LoginComponent,
+    LogoutComponent
+  ],exports: [
+    FormAutocompleteMultipleComponent,
     LoginComponent,
     LogoutComponent,
     MaterialModule
-  ],
-  declarations: [
-    LoginComponent,
-    LogoutComponent
   ],
   providers: [
     AuthGuard,

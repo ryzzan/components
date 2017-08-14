@@ -12,8 +12,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.paramsToLogout = {
-      route: "['/login']"
+      route: ['/login']
     }
   }
-
 }

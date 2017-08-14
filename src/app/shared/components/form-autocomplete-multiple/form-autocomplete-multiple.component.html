@@ -1,9 +1,15 @@
-<md-input-container>
-  <input mdInput placeholder="{{params?.placeholder}}" [mdAutocomplete]="auto">
-</md-input-container>
+<span *ngIf="errors.length < 1">
+  <md-input-container>
+    <input mdInput placeholder="{{params?.placeholder}}" [mdAutocomplete]="auto">
+  </md-input-container>
 
-<md-autocomplete #auto="mdAutocomplete">
-  <md-option *ngFor="let item of array" [value]="item.value">
-    {{ item.description }}
-  </md-option>
-</md-autocomplete>
+  <md-autocomplete #auto="mdAutocomplete">
+    <md-option *ngFor="let item of array" [value]="item.value">
+      {{ item.description }}
+    </md-option>
+  </md-autocomplete>
+</span>
+
+<span *ngIf="errors.length > 0">
+  <md-error *ngFor="let error of errors">{{error.cod}} - {{error.message}}</md-error>
+</span>

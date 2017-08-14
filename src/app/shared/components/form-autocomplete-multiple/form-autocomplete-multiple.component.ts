@@ -11,44 +11,50 @@ import { CrudService } from './../../services/firebase/crud.service'
 export class FormAutocompleteMultipleComponent implements OnInit {
   @Input() params;
   /**
-   * params.ref: string
+   * params.array: string
    * params.placeholder: string
    * params.description: string
    * params.value: string
    */
   
-  array: any;
-  error: any;
+  errors = [];
 
   constructor(private crud: CrudService) { }
 
   ngOnInit() {
-    this.array = [];
-    this.setArray();
-  }
+    if(this.params) {
+      if(!this.params.array) {
+        this.errors.push({
+          cod: 'bfam-lo-01',
+          message: "Definir array do autocomplete"
+        });
+      }
 
-  setArray = () => {
-    this.crud.read({
-      ref: this.params.ref
-    })
-    .then(res => {
-      let temp, description, value;
-      temp = res;
-      for(let lim = temp.length, i = 0; i < lim; i++) {
-        for(let key in temp[i]) {
-          if(key === this.params.description) {
-            description = temp[i][key];
-          }
+      if(!this.params.description) {
+        this.errors.push({
+          cod: 'bfam-lo-02',
+          message: "Definir campo da array que serve como descrição do autocomplete"
+        });
+      }
 
-          if(key === this.params.value) {
-            value = temp[i][key];
-          }
-        }
-        this.array.push({
-          description: description,
-          value: value
-        })
-      };
-    })
+      if(!this.params.value) {
+        this.errors.push({
+          cod: 'bfam-lo-03',
+          message: "Definir campo da array que serve de valor do autocomplete"
+        });
+      }
+
+      if(!this.params.placeholder) {
+        this.errors.push({
+          cod: 'bfam-lo-04',
+          message: "Definir placeholder do autocomplete"
+        });
+      }
+    } else {
+      this.errors.push({
+        cod: 'p-01',
+        message: "Definir parâmetros mínimos do componente"
+      });
+    }
   }
 }
