@@ -9,6 +9,10 @@ import { FormAutocompleteMultipleComponent } from './components/form-autocomplet
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
+/**
+ * Pipes
+ */
+
 /**Services */
 import { AuthGuard } from './guards/auth.guard'; //Guard
 import { AuthenticationService } from './services/firebase/authentication.service';

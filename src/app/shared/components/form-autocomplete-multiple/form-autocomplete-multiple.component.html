@@ -1,8 +1,11 @@
-<span *ngIf="errors.length < 1">
+<span *ngIf="errors.length < 1" [formGroup]="bfamForm">
   <md-input-container>
     <input mdInput placeholder="{{params?.placeholder}}" 
     [mdAutocomplete]="auto"
-    (keyup)="filterDescription($event)">
+    (keyup)="onFilterDescription($event)"
+    (select)="onAddToObjectTemp($event)"
+    (input)="onAddToObjectTemp($event)"
+    formControlName="bfam">
   </md-input-container>
 
   <md-autocomplete #auto="mdAutocomplete">
@@ -10,10 +13,21 @@
       {{ item.description }}
     </md-option>
   </md-autocomplete>
+
+  <md-icon class="md-18" *ngIf="addToObjectButton" (click)="onAddToObject()">add</md-icon>
 </span>
 
 <span *ngIf="errors.length > 0">
   <div *ngFor="let error of errors">
     <md-error>{{error.cod}} - {{error.message}}</md-error>
   </div>
+</span>
+
+<span *ngIf="objectArray">
+  <md-chip-list>
+    <md-chip *ngFor="let item of objectArray; let i = index">
+      <span class="object-value">{{item.description}}</span>
+      <span (click)="onClearObjectArrayItem(i)"><md-icon class="object-clear">clear</md-icon></span>
+    </md-chip>
+  </md-chip-list>
 </span>
