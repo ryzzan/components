@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 /**
  * Services
@@ -10,17 +10,28 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges {
   formAutoCompleteMultipleParams: any;
-  constructor(private crud: CrudService) { }
+  constructor(private crud: CrudService) {
+    
+  }
 
   ngOnInit() {
+    this.formAutoCompleteMultipleParams = {        
+      firebaseRef: 'countries',
+      description: 'country_name_pt',
+      value: 'country_name_pt',
+      placeholder: 'País'
+    }
+  }
+
+  ngOnChanges() {
     this.crud.read({
-      route: 'countries'
+      ref: 'countries'
     })
     .then(res => {
-      console.log(res)
-      this.formAutoCompleteMultipleParams = {
+      console.log(res);
+      this.formAutoCompleteMultipleParams = {        
         array: res
       }
     })

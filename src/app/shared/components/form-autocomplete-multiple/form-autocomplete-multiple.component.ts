@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 /**Services */
 import { CrudService } from './../../services/firebase/crud.service'
@@ -10,6 +10,8 @@ import { CrudService } from './../../services/firebase/crud.service'
 })
 export class FormAutocompleteMultipleComponent implements OnInit {
   @Input() params;
+  
+  filteredArray: any;
   /**
    * params.array: string
    * params.placeholder: string
@@ -18,15 +20,16 @@ export class FormAutocompleteMultipleComponent implements OnInit {
    */
   
   errors = [];
+  array = [];
 
   constructor(private crud: CrudService) { }
 
   ngOnInit() {
     if(this.params) {
-      if(!this.params.array) {
+      if(!this.params.firebaseRef) {
         this.errors.push({
           cod: 'bfam-lo-01',
-          message: "Definir array do autocomplete"
+          message: "Definir referência do firebase para montar opções do autocomplete"
         });
       }
 
@@ -50,11 +53,41 @@ export class FormAutocompleteMultipleComponent implements OnInit {
           message: "Definir placeholder do autocomplete"
         });
       }
+
+      this.crud.read({
+        ref: this.params.firebaseRef
+      })
+      .then(res => {
+        let obj = Object.keys(res).map(k => res[k]);
+        let array = [];
+
+        for(let lim = obj.length, i= 0; i < lim; i++) {
+          array.push({
+            description: obj[i][this.params.description],
+            value: obj[i][this.params.value]
+          })          
+        }
+
+        this.array = array;
+        this.filteredArray = array;
+      })
     } else {
       this.errors.push({
         cod: 'p-01',
         message: "Definir parâmetros mínimos do componente"
       });
     }
+  }
+
+  filterDescription(val) {
+    let r = val.srcElement.value;
+    
+    if(val != null) {
+      this.filteredArray = this.array.filter(s => s.description.toLowerCase().indexOf(r.toLowerCase()) === 0)
+    } else {
+      this.filteredArray = this.array;
+    }
+    
+    return this.filteredArray;
   }
 }
