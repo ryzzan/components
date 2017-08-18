@@ -24,7 +24,7 @@
 </span>
 
 <span *ngIf="objectArray">
-  <md-chip-list>
+  <md-chip-list *ngIf="params.objectPresentation == 'chip'">
     <md-chip *ngFor="let item of objectArray; let i = index">
       <span class="object-value">{{item.description}}</span>
       <span (click)="onClearObjectArrayItem(i)"><md-icon class="object-clear">clear</md-icon></span>

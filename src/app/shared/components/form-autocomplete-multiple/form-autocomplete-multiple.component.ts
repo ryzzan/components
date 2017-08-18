@@ -19,6 +19,7 @@ export class FormAutocompleteMultipleComponent implements OnInit {
    * params.description: string
    * params.value: string
    * params.keepSelectedItem: boolean
+   * params.objectPresentation: string (chip | list)
    */
   
   addToObjectButton: boolean = false;
@@ -76,6 +77,10 @@ export class FormAutocompleteMultipleComponent implements OnInit {
           cod: 'bfam-lo-04',
           message: "Definir placeholder do autocomplete  ({ placeholder: 'nome' })"
         });
+      }
+
+      if(!this.params.objectPresentation) {
+        this.params.objectPresentation = 'chip';
       }
       
       this.crud.read({

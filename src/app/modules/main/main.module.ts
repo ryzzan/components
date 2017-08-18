@@ -13,6 +13,7 @@ import { MainComponent } from './main.component';
  */
 import { MainRoutingModule } from './main-routing.module';
 import { SharedModule } from './../../shared/shared.module';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { SharedModule } from './../../shared/shared.module';
   declarations: [
     FormComponent, 
     HomeComponent,
+    ListComponent,
     MainComponent
   ]
 })

@@ -4,9 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 /**
  * Components
  */
-import { MainComponent } from './main.component';
 import { FormComponent } from './components/form/form.component';
 import { HomeComponent } from './components/home/home.component';
+import { ListComponent } from './components/list/list.component';
+import { MainComponent } from './main.component';
 
 const routes: Routes = [{
   path: '', component: MainComponent, children: [
@@ -15,8 +16,9 @@ const routes: Routes = [{
       redirectTo: 'home',
       pathMatch: 'full'
     },
+    { path: 'form', component: FormComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'form', component: FormComponent }
+    { path: 'list', component: ListComponent }
   ]
 }];
 
