@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  paramsToBonaMondoDataTable: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.paramsToBonaMondoDataTable = {
+      firebaseReference: 'countries',
+      firebasePropertiesToShow: [{
+        title: 'País',
+        propertyName: 'continent_pt'
+      }, {
+        title: 'Iniciais',
+        propertyName: 'initials'
+      }]
+    }
   }
 
 }

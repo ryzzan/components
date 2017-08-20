@@ -24,7 +24,6 @@ export class AuthGuard implements CanActivate {
       
     } else {
       fbAuth.onAuthStateChanged((user) => {
-        console.log(user);
         if(!user) {
           this.router.navigate(['/login']);
         }

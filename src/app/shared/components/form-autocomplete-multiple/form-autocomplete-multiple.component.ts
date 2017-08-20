@@ -109,14 +109,13 @@ export class FormAutocompleteMultipleComponent implements OnInit {
   }
 
   onAddToObjectTemp(event) {
-    console.log(event);
-    this.addToObjectButton = true;
+    if(event.target.value) {
+      this.addToObjectButton = true;
+    }
     
     this.objectTemp = this.array.filter(obj => {
       return obj.value == event.srcElement.value;
     }); 
-
-    console.log(this.objectTemp[0]);
   }
 
   onAddToObject(event) {
@@ -133,7 +132,6 @@ export class FormAutocompleteMultipleComponent implements OnInit {
     }
 
     this.objectTemp = null;
-    console.log(this.objectArray);
   }
 
   onClearObjectArrayItem = (index) => {
