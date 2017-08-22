@@ -1,6 +1,11 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+/**
+ * Pipes
+ */
+import { SortPipe } from './../../pipes/sort.pipe';
+
 /**Services */
 import { CrudService } from './../../services/firebase/crud.service'
 
@@ -109,9 +114,14 @@ export class FormAutocompleteMultipleComponent implements OnInit {
   }
 
   onAddToObjectTemp(event) {
-    console.log(event)
-    if(event.returnValue) {
-      this.addToObjectButton = true;
+    this.addToObjectButton = false;
+    
+    if(event.target.value) {
+      for(let lim = this.array.length, i = 0; i < lim; i++) {
+        if(this.array[i].value == event.target.value) {
+          this.addToObjectButton = true;    
+        }
+      }
     }
     
     this.objectTemp = this.array.filter(obj => {

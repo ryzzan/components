@@ -2,14 +2,13 @@
   <md-input-container>
     <input mdInput placeholder="{{params?.placeholder}}" 
     [mdAutocomplete]="auto"
-    (keyup)="onFilterDescription($event)"
+    (keyup)="onFilterDescription($event); onAddToObjectTemp($event);"
+    (focus)="onAddToObjectTemp($event)"
     formControlName="bfam">
   </md-input-container>
 
   <md-autocomplete #auto="mdAutocomplete">
-    <md-option *ngFor="let item of filteredArray" [value]="item.value"
-    (click)="onAddToObjectTemp($event)"
-    (keyup.enter)="onAddToObjectTemp($event)">
+    <md-option *ngFor="let item of filteredArray | sort: 'description'" [value]="item.value">
       {{ item.description }}
     </md-option>
   </md-autocomplete>

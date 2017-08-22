@@ -15,6 +15,7 @@ import { MenuToolbarComponent } from './components/menu-toolbar/menu-toolbar.com
 /**
  * Pipes
  */
+import { SortPipe } from './pipes/sort.pipe';
 
 /**Services */
 import { AuthGuard } from './guards/auth.guard'; //Guard
@@ -33,7 +34,8 @@ import { CrudService } from './services/firebase/crud.service';
     LoginComponent,
     LogoutComponent,
     MenuSidenavComponent,
-    MenuToolbarComponent
+    MenuToolbarComponent,
+    SortPipe
   ],exports: [
     DataTableComponent,
     FormAutocompleteMultipleComponent,
