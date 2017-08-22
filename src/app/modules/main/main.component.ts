@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   paramsToLogout: any;
+  paramsToMenuSideNav: any;
   paramsToMenuToolbar: any;
 
   constructor() { }
@@ -25,6 +26,19 @@ export class MainComponent implements OnInit {
         description: 'Lists',
         route: '/main/list',
         mdIcon: 'view_list'
+      }]
+    }
+
+    this.paramsToMenuSideNav = {
+      menuSettings: [{
+        description: "Teste 1",
+        route: ''
+      }, {
+        description: "Teste 2",
+        route: ''
+      }, {
+        description: "Teste 3",
+        route: ''
       }]
     }
   }

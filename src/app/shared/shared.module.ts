@@ -9,6 +9,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { FormAutocompleteMultipleComponent } from './components/form-autocomplete-multiple/form-autocomplete-multiple.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { MenuSidenavComponent } from './components/menu-sidenav/menu-sidenav.component';
 import { MenuToolbarComponent } from './components/menu-toolbar/menu-toolbar.component';
 
 /**
@@ -31,14 +32,16 @@ import { CrudService } from './services/firebase/crud.service';
     FormAutocompleteMultipleComponent,
     LoginComponent,
     LogoutComponent,
+    MenuSidenavComponent,
     MenuToolbarComponent
   ],exports: [
     DataTableComponent,
     FormAutocompleteMultipleComponent,
     LoginComponent,
     LogoutComponent,
-    MaterialModule,
-    MenuToolbarComponent
+    MenuSidenavComponent,
+    MenuToolbarComponent,
+    MaterialModule
   ],
   providers: [
     AuthGuard,

@@ -109,7 +109,8 @@ export class FormAutocompleteMultipleComponent implements OnInit {
   }
 
   onAddToObjectTemp(event) {
-    if(event.target.value) {
+    console.log(event)
+    if(event.returnValue) {
       this.addToObjectButton = true;
     }
     
