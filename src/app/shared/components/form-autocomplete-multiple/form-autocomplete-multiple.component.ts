@@ -4,7 +4,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 /**
  * Pipes
  */
-import { SortPipe } from './../../pipes/sort.pipe';
 
 /**Services */
 import { CrudService } from './../../services/firebase/crud.service'
@@ -31,9 +30,9 @@ export class FormAutocompleteMultipleComponent implements OnInit {
   array = [];
   bfamForm: FormGroup;
   errors = [];
-  filteredArray: any;
+  filteredArray = [];
   objectArray = [];
-  objectTemp: any;  
+  objectTemp: any;
 
   constructor(private crud: CrudService) {
     this.bfamForm = new FormGroup({
@@ -99,16 +98,32 @@ export class FormAutocompleteMultipleComponent implements OnInit {
           array.push({
             description: obj[i][this.params.description],
             value: obj[i][this.params.value]
-          })          
+          })
         }
-
+        this.OrderByArray(array, "description").map(eg => this.filteredArray.push(eg));
         this.array = array;
-        this.filteredArray = array;
       })
     } else {
       this.errors.push({
         cod: 'p-01',
         message: "Definir parâmetros mínimos do componente"
+      });
+    }
+  }
+
+  /* Ordenar a array */
+  OrderByArray(values: any[], orderType: any) { 
+    if(values == undefined){
+      return [];
+    } else {
+      return values.sort((a, b) => {
+          if (a[orderType] < b[orderType]) {
+              return -1;
+          } else if (a[orderType] > b[orderType]) {
+              return 1;
+          } else {
+            return 0
+          }
       });
     }
   }
@@ -139,7 +154,9 @@ export class FormAutocompleteMultipleComponent implements OnInit {
         return obj.value != this.objectTemp[0].value;
       });
 
-      this.filteredArray = this.array;
+      this.filteredArray = [];
+      this.OrderByArray(this.array, "description").map(eg => this.filteredArray.push(eg));
+
     }
 
     this.objectTemp = null;
@@ -149,9 +166,11 @@ export class FormAutocompleteMultipleComponent implements OnInit {
     if(!this.params.keepSelectedItem) {
       //Objeto que sai da listagem de objetos selecionados volta pra array de objetos do autocomplete
       this.array.push(this.objectArray[index]);
-      //TO-DO: A array de objetos do autocomplete é reordenada
-
-      this.filteredArray = this.array;
+      
+      //TO-DO: A array de objetos do autocomplete é reordenada - Alexis: Feito, ver as duas linhas abaixo
+      this.filteredArray = [];
+      this.OrderByArray(this.array, "description").map(eg => this.filteredArray.push(eg));
+      
     }
     
     this.objectArray.splice(index, 1);
