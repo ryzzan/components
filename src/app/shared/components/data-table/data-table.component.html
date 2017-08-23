@@ -1,6 +1,6 @@
 <span *ngIf="errors.length < 1">
-  <!--<md-table #table [dataSource]="dataSource">
-    <span *ngFor="let properties of params.firebasePropertiesToShow">
+  <md-table #table [dataSource]="dataSource">
+    <!--<span *ngFor="let properties of params.firebasePropertiesToShow">
       <ng-container cdkColumnDef="properties.propertyName">
         <md-header-cell *cdkHeaderCellDef> {{properties.title}} </md-header-cell>
         <md-cell *cdkCellDef="let row"> {{row.properties.propertyName}} </md-cell>
@@ -8,8 +8,8 @@
     </span>
 
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>-->
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>-->
+  </md-table>
 </span>
 
 <span *ngIf="errors.length > 0">

@@ -61,6 +61,7 @@ export class DataTableComponent implements OnInit {
       let crudReadParams = {
         ref: this.params.firebaseReference
       }
+      
       this.crud.read(crudReadParams)
       .then(res => {
         this.dataSource = res;

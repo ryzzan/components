@@ -13,27 +13,24 @@ export class AuthenticationService {
       // Handle Errors here.
       var errorCode = error['code'];
       var errorMessage = error.message;
-      if (errorCode === 'auth/wrong-password') {
-        resolve('Wrong password.');
-      } else {
-        resolve(errorMessage);
-      }
+      
+      resolve({
+        cod: "l-err-01",
+        message: errorMessage
+      })
+
       resolve(error);
     })
     .then(res => {
-      if(res.refreshToken) {
-        resolve({
-          cod: "l-01",
-          message: "Login feito com sucesso."
-        })
+      if(res) {
+        if(res.refreshToken) {
+          resolve({
+            cod: "l-01",
+            message: "Login successful."
+          })
+        }
       }
     })
-    .catch(rej => {
-      reject({
-        cod: "l-02",
-        message: rej
-      })
-    });
   })
 
   logout = () => new Promise((resolve, reject) => {

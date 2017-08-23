@@ -1,15 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './assets/css/reset.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
-
-md-error {
-  font-size: 10px;
-}
 
 a {
   cursor: pointer;
 }
 
+body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+md-error {
+  margin: -10px 0 0 2px;
+  font-size: 12px;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.icon-form-input {
+  color: #000;
+  float: left;
+  font-size: 25px;
+  margin-right: 5px;
+  padding-top: 10px;
+}
+
+.icon-form-datepicker {
+  color: #000;
+  float: left;
+  font-size: 25px;
+  margin-right: 5px;
+  padding-top: 15px;
+}
+
+.icon-form-select {
+  color: #000;
+  float: left;
+  font-size: 25px;
+  margin-right: 5px;
+  padding-top: 0;
+}
+
+.list-box md-icon {
+  font-size: 14px;
+  margin-right: -15px;
+  padding: 0;
+}
+
+.list-box {
+  font-size: 12px;
+  margin: 0px 10px 0px 0;
+}
+
+.logo-menu {
+  height: 120px;
+}
+
+.menu-icon {
+  margin-right: 20px;
+  font-size: 30px;
+}
+
+.select-error {
+  margin: 6px 0 0 2px;
+  font-size: 12px;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
+
+.w50 { width: 50px; } .w100 { width: 100px; } .w200 { width: 200px; } .w300 { width: 300px; } 
+.w400 { width: 400px; } .w500 { width: 500px; } .w600 { width: 600px; }
+
+.w5p { width: 5%; } .w10p { width: 10%; } .w20p { width: 20%; } .w30p { width: 30%; } .w40p { width: 40%; } .w45p { width: 45%; }
+.w49p { width: 49%; } .w50p { width: 50%; } .w60p { width: 60%; } .w70p { width: 70%; } .w80p { width: 80%; } .w90p { width: 90%; }
+.w100p { width: 100%; }
+
+.mr5 { margin-right: 5px; } .mr10 { margin-right: 10px; } .mr15 { margin-right: 15px; } .mr20 { margin-right: 20px; }

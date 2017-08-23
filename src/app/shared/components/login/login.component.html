@@ -1,15 +1,48 @@
 <md-card>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <md-input-container>
-        <input mdInput formControlName="email" type="text"
-        placeholder="E-mail">
-    </md-input-container>
+    <div>
+      <md-input-container>
+        <span style="float: right; width: 5%; text-align: right;">
+          <md-icon class="md-18" [ngStyle]="{'color': iconColorToEmail}">{{mdIconToEmail}}</md-icon>
+        </span>
+        
+        <span style="float: left; width: 95%;">
+          <input mdInput formControlName="email" type="text"
+          placeholder="{{placeholderToEmail}}"
+          (blur)="onChangeEmail()">
+        </span>
+        <span style="clear: both"></span>
+      </md-input-container>
+    </div>
 
-    <md-input-container>
-      <input mdInput formControlName="password" type="password"
-      placeholder="Password">
-    </md-input-container>
+    <div>
+      <md-input-container>
+        <span style="float: right; width: 5%; text-align: right;">
+          <md-icon class="md-18" [ngStyle]="{'color': iconColorToPassword}">{{mdIconToPassword}}</md-icon>
+        </span>
+        
+        <span style="float: left; width: 95%;">
+          <input mdInput formControlName="password" type="password"
+          placeholder="{{placeholderToPassword}}"
+          (blur)="onChangePassword()">
+        </span>
+        <span style="clear: both"></span>
+      </md-input-container>
+    </div>
 
-    <button md-raised-button type="submit">Login</button>
+    <div>
+      <button md-raised-button type="submit"
+      color="primary"
+      [disabled]="loginForm.invalid">
+        Login
+      </button>
+              
+      <a md-raised-button
+      color="warn"
+      *ngIf="forgotPasswordRoute"
+      (click)="onForgotPassword()">
+        Forgot password
+      </a>
+    </div>
   </form>
 </md-card>

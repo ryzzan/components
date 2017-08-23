@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 /**Components */
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { FormAutocompleteMultipleComponent } from './components/form-autocomplete-multiple/form-autocomplete-multiple.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -30,6 +31,7 @@ import { CrudService } from './services/firebase/crud.service';
   ],  
   declarations: [
     DataTableComponent,
+    ForgotPasswordComponent,
     FormAutocompleteMultipleComponent,
     LoginComponent,
     LogoutComponent,
@@ -38,6 +40,7 @@ import { CrudService } from './services/firebase/crud.service';
     SortPipe
   ],exports: [
     DataTableComponent,
+    ForgotPasswordComponent,
     FormAutocompleteMultipleComponent,
     LoginComponent,
     LogoutComponent,
