@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
@@ -15,6 +15,7 @@ import { CrudService } from './../../services/firebase/crud.service'
 })
 export class FormAutocompleteMultipleComponent implements OnInit {
   @Input() params;
+  @Output() resultedArray = new EventEmitter<any>();
   
   /**
    * params.source: string
@@ -100,7 +101,9 @@ export class FormAutocompleteMultipleComponent implements OnInit {
             value: obj[i][this.params.value]
           })
         }
-        this.OrderByArray(array, "description").map(eg => this.filteredArray.push(eg));
+        this.OrderByArray(array, "description").map(eg => {
+          this.filteredArray.push(eg);
+        });
         this.array = array;
       })
     } else {
@@ -149,6 +152,7 @@ export class FormAutocompleteMultipleComponent implements OnInit {
     this.bfamForm.get('bfam').patchValue(null);
     this.objectArray.push(this.objectTemp[0]);
     
+    
     if(!this.params.keepSelectedItem) { //tirar elemento selecionado da array do autocomplete
       this.array = this.array.filter(obj => {        
         return obj.value != this.objectTemp[0].value;
@@ -156,6 +160,7 @@ export class FormAutocompleteMultipleComponent implements OnInit {
 
       this.filteredArray = [];
       this.OrderByArray(this.array, "description").map(eg => this.filteredArray.push(eg));
+      this.resultedArray.emit(this.objectArray);
 
     }
 
@@ -174,6 +179,7 @@ export class FormAutocompleteMultipleComponent implements OnInit {
     }
     
     this.objectArray.splice(index, 1);
+    this.resultedArray.emit(this.objectArray);
   }
 
 

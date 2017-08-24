@@ -21,9 +21,13 @@ export class FormComponent implements OnInit {
     this.formAutoCompleteMultipleParams = { 
       source: 'firebase',       
       firebaseRef: 'countries',
-      description: 'country_name_pt',
-      value: 'country_name_pt',
+      description: 'countryNameInPortuguese',
+      value: 'countryNameInPortuguese',
       placeholder: 'Países'
     }
+  }
+
+  getResultedArray(event){
+    console.log(event);
   }
 }

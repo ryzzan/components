@@ -9,7 +9,7 @@
 
   <md-autocomplete #auto="mdAutocomplete">
     <md-option *ngFor="let item of filteredArray" [value]="item.value">
-      {{ item.description }}
+      {{ item.value }}
     </md-option>
   </md-autocomplete>
 
